@@ -12,4 +12,41 @@ class UserModel extends ViewStateModel{
   User get user => _user;
 
   bool get hasUser => user != null;
+
+  UserModel(){
+    var userMap = StorageManager.localStorage.getItem(kUser);
+    _user = userMap != null ? User.fromJsonMap(userMap) : null;
+  }
+
+  saveUser(User user){
+    _user = user;
+    notifyListeners();
+    StorageManager.localStorage.setItem(kUser, user);
+  }
+
+
+  clearUser(){
+    _user = null;
+    notifyListeners();
+    StorageManager.localStorage.deleteItem(kUser);
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
