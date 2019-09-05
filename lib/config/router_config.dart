@@ -37,9 +37,77 @@ class RouteName {
 
 class Router{
   static Route<dynamic> generateRoute(RouteSettings settings){
-    switch(settings.name){}
+    switch(settings.name){
+      case RouteName.splash:
+        return NoAnimRouteBuilder(SplashPage());
+      case RouteName.tab:
+        return NoAnimRouteBuilder(TabNavigator());
+      case RouteName.homeSecondFloor:
+        return SlideTopRouteBuilder(MyBlogPage());
+      case RouteName.login:
+        return CupertinoPageRoute(
+            fullscreenDialog: true, builder: (_) => LoginPage());
+      case RouteName.register:
+        return CupertinoPageRoute(builder: (_) => RegisterPage());
+      case RouteName.articleDetail:
+        var article = settings.arguments as Article;
+        return CupertinoPageRoute(
+            builder: (_) => ArticleDetailPage(
+              article: article,
+            ));
+      case RouteName.treeList:
+        var list = settings.arguments as List;
+        Tree tree = list[0] as Tree;
+        int index = list[1];
+        return CupertinoPageRoute(
+            builder: (_) => ArticleCategoryTabPage(tree, index));
+      case RouteName.collectionList:
+        return CupertinoPageRoute(builder: (_) => FavouriteListPage());
+      case RouteName.setting:
+        return CupertinoPageRoute(builder: (_) => SettingPage());
+      default:
+        return CupertinoPageRoute(
+            builder: (_) => Scaffold(
+              body: Center(
+                child: Text('No route defined for ${settings.name}'),
+              ),
+            ));
+    }
   }
 }
+
+/// Pop路由
+/// 可以弹出透明背景的布局，类似popup window
+  class PopRoute extends PopupRoute{
+
+  final Duration _duration = Duration(milliseconds: 300);
+  Widget child;
+
+  PopRoute({@required this.child});
+
+  @override
+  // TODO: implement barrierColor
+  Color get barrierColor => null;
+
+  @override
+  // TODO: implement barrierDismissible
+  bool get barrierDismissible => true;
+
+  @override
+  // TODO: implement barrierLabel
+  String get barrierLabel => null;
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+    // TODO: implement buildPage
+    return child;
+  }
+
+  @override
+  // TODO: implement transitionDuration
+  Duration get transitionDuration => _duration;
+
+  }
 
 
 
