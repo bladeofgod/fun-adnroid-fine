@@ -4,6 +4,8 @@ import 'view_state.dart';
 
 ///继承change notifier 协调provider 对数据进行刷新
 ///最底层 viewmodel
+/// 所有请求网络数据的页面，基本都继承自 此widget（也就是带有 empty  busy error等状态的）
+/// 对于 列表页 或者普通页面，可以继承此类，之后再针对不同的页面需求，进行再次封装
 class ViewStateModel with ChangeNotifier{
   /// 防止页面销毁后,异步任务才完成,导致报错
   bool _disposed = false;
