@@ -14,7 +14,10 @@ import 'package:flutter_app_funandroid/view_model/scroll_controller_model.dart';
 import 'package:flutter_app_funandroid/ui/widget/animated_provider.dart';
 import 'package:flutter_app_funandroid/ui/widget/banner_image.dart';
 import 'package:flutter_app_funandroid/provider/view_state_model.dart';
-import 'package:flutter_app_funandroid/ui/widget/';
+import 'package:flutter_app_funandroid/ui/widget/article_list_Item.dart';
+import 'package:flutter_app_funandroid/ui/widget/article_skeleton.dart';
+import 'package:flutter_app_funandroid/view_model/home_model.dart';
+import 'package:flutter_app_funandroid/ui/page/';
 
 
 

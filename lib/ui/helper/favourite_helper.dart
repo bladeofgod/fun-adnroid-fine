@@ -21,17 +21,15 @@ import 'dialog_helper.dart';
 ///
 ///
 
-addFavourites(BuildContext context,
-{Article article,FavouriteModel model,Object tag: 'addFavourite',
-  bool playAnim : true})async{
-  await model.collect(article);
+addFavourites(context,model, tag, {playAnim:true})async{
+  await model.collect();
 
   //未登录
   if(model.unAuthorized){
     if(await DialogHelper.showLoginDialog(context)){
       var success = await Navigator.pushNamed(context, RouteName.login);
       if(success ?? false){
-        addFavourites(context,article: article,model: model,tag: tag);
+        addFavourites(context, model, tag);
       }
     }else if(model.error){
       //失败
@@ -43,7 +41,7 @@ addFavourites(BuildContext context,
         HeroDialogRoute(
           builder:(_)=>FavouriteAnimationWidget(
             tag: tag,
-            add: article.collect,
+            add: model.article.collect,
           )
         ));
       }
