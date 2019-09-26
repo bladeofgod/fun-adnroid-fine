@@ -34,7 +34,7 @@ class WanAndroidRepository{
   }
 
   //项目分类
-  static Future fetchProjectCategories()async{
+  static Future fetchTreeCategories()async{
     var response = await http.get('project/tree/json');
     return response.data.map<Tree>((item) =>  Tree.fromJsonMap(item)).toList();
   }
